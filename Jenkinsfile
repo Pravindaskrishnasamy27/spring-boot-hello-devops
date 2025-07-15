@@ -1,11 +1,6 @@
 pipeline {
     agent any
 
-    tools {
-        maven 'Maven 3.9.6'
-        jdk 'Java 17'
-    }
-
     environment {
         IMAGE_NAME = "pravindaskrishnasamy27/spring-boot-hello-devops"
         IMAGE_TAG = "1.0.0"
