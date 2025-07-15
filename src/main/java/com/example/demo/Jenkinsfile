@@ -1,0 +1,52 @@
+pipeline {
+    agent any
+
+    tools {
+        maven 'Maven 3.9'
+        jdk 'Java 17'
+    }
+
+    environment {
+        DOCKER_IMAGE = "pravindas/hello-devops"
+    }
+
+    stages {
+        stage('Checkout') {
+            steps {
+                git 'https://github.com/Pravindaskrishnasamy27/spring-boot-hello-devops.git'
+            }
+        }
+
+        stage('Code Quality - SonarQube') {
+            steps {
+                withSonarQubeEnv('MySonarServer') {
+                    sh 'mvn clean verify sonar:sonar'
+                }
+            }
+        }
+
+        stage('Build') {
+            steps {
+                sh 'mvn clean package'
+            }
+        }
+
+        stage('Docker Build & Push') {
+            steps {
+                sh '''
+                docker build -t $DOCKER_IMAGE .
+                docker push $DOCKER_IMAGE
+                '''
+            }
+        }
+
+        stage('Deploy to Kubernetes') {
+            steps {
+                sh '''
+                kubectl apply -f k8s-deployment.yaml
+                kubectl apply -f k8s-service.yaml
+                '''
+            }
+        }
+    }
+}
