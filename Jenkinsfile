@@ -2,6 +2,13 @@ pipeline {
     agent any
 
     stages {
+        stage('Clean Workspace') {
+            steps {
+                deleteDir()      // 💣 Deletes all files in workspace
+                checkout scm     // Re-checkout code after clean
+            }
+        }
+
         stage('Build') {
             steps {
                 sh 'mvn clean install'
