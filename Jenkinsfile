@@ -2,12 +2,6 @@ pipeline {
     agent any
 
     stages {
-        stage('Checkout') {
-            steps {
-                git 'https://github.com/Pravindaskrishnasamy27/spring-boot-hello-devops.git'
-            }
-        }
-
         stage('Build') {
             steps {
                 sh 'mvn clean install'
