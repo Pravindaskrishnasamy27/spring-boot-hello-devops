@@ -4,8 +4,8 @@ pipeline {
     environment {
         IMAGE_NAME = "pravindaskrishnasamy27/spring-boot-hello-devops"
         IMAGE_TAG = "1.0.0"
-        DOCKER_USERNAME = credentials('DOCKER_USERNAME')
-        DOCKER_PASSWORD = credentials('DOCKER_PASSWORD')
+        DOCKER_USERNAME = credentials('PravinDas')
+        DOCKER_PASSWORD = credentials('Docker access token')
     }
 
     stages {
