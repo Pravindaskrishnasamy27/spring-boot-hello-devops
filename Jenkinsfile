@@ -4,7 +4,7 @@ pipeline {
     environment {
         IMAGE_NAME = "pravindaskrishnasamy27/spring-boot-hello-devops"
         IMAGE_TAG = "1.0.0"
-        DOCKER_USERNAME = credentials('pravindas')
+        DOCKER_USERNAME = 'pravindas'
         DOCKER_PASSWORD = credentials('DOCKER_TOKEN')
     }
 
