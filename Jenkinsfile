@@ -42,10 +42,12 @@ pipeline {
         stage('Deploy to Kubernetes') { 
             steps { 
                 sh ''' 
-                /usr/local/bin/kubectl --context=minikube apply -f k8s-deployment.yaml
-                /usr/local/bin/kubectl --context=minikube apply -f k8s-service.yaml
-                /usr/local/bin/kubectl --context=minikube get pods
-                /usr/local/bin/kubectl --context=minikube get svc
+                eval $(minikube -p minikube docker-env)          # Docker env if needed
+                eval $(minikube -p minikube kubectl-env)         # Sets correct KUBECONFIG & context dynamically
+                kubectl apply -f k8s-deployment.yaml
+                kubectl apply -f k8s-service.yaml
+                kubectl get pods
+                kubectl get svc
                 ''' 
             } 
         } 
