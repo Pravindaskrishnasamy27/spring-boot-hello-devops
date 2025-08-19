@@ -42,10 +42,10 @@ pipeline {
         stage('Deploy to Kubernetes') { 
             steps { 
                 sh ''' 
-                export KUBECONFIG=/Users/pravin/.kube/config 
-                kubectl cluster-info 
-                kubectl get nodes 
-                kubectl apply -f k8s-deployment.yaml 
+                /usr/local/bin/kubectl --kubeconfig=/Users/pravin/.kube/config apply -f k8s-deployment.yaml
+                /usr/local/bin/kubectl --kubeconfig=/Users/pravin/.kube/config apply -f k8s-service.yaml
+                /usr/local/bin/kubectl --kubeconfig=/Users/pravin/.kube/config get pods
+                /usr/local/bin/kubectl --kubeconfig=/Users/pravin/.kube/config get svc
                 ''' 
             } 
         } 
