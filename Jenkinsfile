@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     environment {
-        IMAGE_NAME = "pravindaskrishnasamy27/spring-boot-hello-devops"
+        IMAGE_NAME = "pravindaskrishnasamy/spring-boot-hello-devops"
         IMAGE_TAG = "1.0.0"
     }
 
