@@ -43,9 +43,9 @@ pipeline {
             steps { 
                 sh ''' 
                 eval $(minikube -p minikube docker-env)        # Docker env
-                export KUBECONFIG=$(minikube -p minikube kubeconfig)  # Dynamic kubeconfig path
-                kubectl apply -f k8s-deployment.yaml --validate=false
-                kubectl apply -f k8s-service.yaml --validate=false
+                export KUBECONFIG=$(minikube -p minikube kubeconfig)  # Dynamic kubeconfig
+                kubectl apply -f k8s-deployment.yaml
+                kubectl apply -f k8s-service.yaml
                 kubectl get pods
                 kubectl get svc
                 ''' 
