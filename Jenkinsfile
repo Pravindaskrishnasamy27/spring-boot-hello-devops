@@ -42,10 +42,10 @@ pipeline {
         stage('Deploy to Kubernetes') { 
             steps { 
                 sh ''' 
-                /usr/local/bin/kubectl --kubeconfig=/Users/pravin/.kube/config apply -f k8s-deployment.yaml --validate=false
-                /usr/local/bin/kubectl --kubeconfig=/Users/pravin/.kube/config apply -f k8s-service.yaml --validate=false
-                /usr/local/bin/kubectl --kubeconfig=/Users/pravin/.kube/config get pods
-                /usr/local/bin/kubectl --kubeconfig=/Users/pravin/.kube/config get svc
+                /usr/local/bin/kubectl --context=minikube apply -f k8s-deployment.yaml
+                /usr/local/bin/kubectl --context=minikube apply -f k8s-service.yaml
+                /usr/local/bin/kubectl --context=minikube get pods
+                /usr/local/bin/kubectl --context=minikube get svc
                 ''' 
             } 
         } 
